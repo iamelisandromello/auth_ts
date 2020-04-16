@@ -1,15 +1,15 @@
 version: "3"
 services:
-  mongo:
-    container_name: mongo-container
+  mongoauth:
+    container_name: mongo-auth
     image: mongo:3
     restart: always
     volumes:
       - ./data:/data/db
     ports: 
-      - "27017:27017"
-  api:
-    container_name: api-container
+      - "27027:27017"
+  auth:
+    container_name: auth-container
     image: node:12
     working_dir: /usr/src/auth-ts
     restart: always
@@ -21,4 +21,4 @@ services:
       - "7070:7070"
       - "9777:9777"
     links: 
-      - mongo
+      - mongoauth
